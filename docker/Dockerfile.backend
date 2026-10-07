@@ -1,0 +1,37 @@
+"""# Backend Dockerfile — TestAgent 生产镜像
+
+参考 Phase 2.8R-I lifespan 挂 Worker;启动期自动 alembic upgrade 可选。
+
+FROM python:3.13-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app
+
+# 系统依赖(gcc / libpq-dev 为 psycopg 编译;curl 给 healthcheck)
+RUN apt-get update && apt-get install -y --no-install-recommends \\
+    build-essential \\
+    libpq-dev \\
+    curl \\
+    && rm -rf /var/lib/apt/lists/*
+
+# Python deps
+COPY backend/requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
+
+# 应用代码
+COPY backend/ .
+
+# 暴露 8000(由 uvicorn 启动,见 docker-compose.prod.yml)
+EXPOSE 8000
+
+# 启动:
+#   alembic upgrade head — 升级 schema(可选;CI/CD 阶段跑更稳)
+#   uvicorn — 单 worker + 多 worker 都不需要:lifespan 自动启动 AgentExecutionWorker
+
+# alembic 在 lifespan 前跑(否则启动后首批任务 FK 不存在)
+CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+"""

@@ -1,0 +1,13 @@
+{
+  "title": "TestAgent Backend Logging",
+  "tags": ["testagent", "logging"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {"title": "Recent errors", "type": "logs", "targets": [{"expr": "{service=\"testagent-backend\"} | json | level=\"ERROR\""}]},
+    {"title": "Agent failures", "type": "logs", "targets": [{"expr": "{service=\"testagent-backend\"} | json | event=\"agent.graph.failed\""}]},
+    {"title": "LLM failures", "type": "logs", "targets": [{"expr": "{service=\"testagent-backend\"} | json | event=\"llm.request.failed\""}]},
+    {"title": "Context failures", "type": "logs", "targets": [{"expr": "{service=\"testagent-backend\"} | json | event=\"context.compose.failed\""}]}
+  ]
+}

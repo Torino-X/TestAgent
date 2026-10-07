@@ -1,0 +1,41 @@
+services:
+  vector:
+    image: timberio/vector:0.42.0-alpine
+    command: ["--config", "/etc/vector/vector.yaml"]
+    volumes:
+      - ./docker/observability/vector/vector.yaml:/etc/vector/vector.yaml:ro
+    ports: ["8686:8686"]
+    depends_on: [loki]
+  loki:
+    image: grafana/loki:3.1.1
+    command: ["-config.file=/etc/loki/config.yaml"]
+    volumes:
+      - ./docker/observability/loki/config.yaml:/etc/loki/config.yaml:ro
+      - loki-data:/loki
+    ports: ["3100:3100"]
+  tempo:
+    image: grafana/tempo:2.6.1
+    command: ["-config.file=/etc/tempo/config.yaml"]
+    volumes:
+      - ./docker/observability/tempo/config.yaml:/etc/tempo/config.yaml:ro
+      - tempo-data:/tmp/tempo
+    ports: ["3200:3200"]
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.111.0
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./docker/observability/otel-collector/config.yaml:/etc/otelcol/config.yaml:ro
+    ports: ["4317:4317", "4318:4318"]
+    depends_on: [tempo]
+  grafana:
+    image: grafana/grafana:11.2.0
+    volumes:
+      - ./docker/observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./docker/observability/grafana/dashboards:/etc/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    ports: ["3000:3000"]
+    depends_on: [loki, tempo]
+volumes:
+  loki-data:
+  grafana-data:
+  tempo-data:

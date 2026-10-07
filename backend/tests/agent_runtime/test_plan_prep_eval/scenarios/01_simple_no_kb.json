@@ -1,0 +1,20 @@
+{
+  "name": "simple_no_kb",
+  "description": "信息充足,LLM 立即 finish,无需 KB 检索",
+  "input": {
+    "user_prompt": "生成单元测试方案",
+    "requirement_summary": "测试用户登录接口的密码错误、账号锁定、token过期场景",
+    "template_summary": "标准测试方案模板"
+  },
+  "scripted_llm_responses": [
+    "{\"action\":\"finish\",\"decision_summary\":\"信息已充足,无需 KB\",\"public_update\":\"直接进入下一步\",\"confidence\":0.9}"
+  ],
+  "kb_envelopes": [],
+  "expected": {
+    "tool_calls_count": 0,
+    "final_action": "finish",
+    "information_sufficient": true,
+    "fallback_reason": null,
+    "knowledge_search_used": false
+  }
+}

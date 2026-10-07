@@ -1,0 +1,31 @@
+{
+  "name": "single_kb_hit",
+  "description": "1 次 KB 检索拿到 2 条证据后 finish",
+  "input": {
+    "user_prompt": "设计支付接口的测试方案",
+    "requirement_summary": "覆盖支付、退款、对账流程",
+    "template_summary": "金融行业测试模板"
+  },
+  "scripted_llm_responses": [
+    "{\"action\":\"call_tool\",\"tool_name\":\"KnowledgeSearchTool\",\"tool_arguments\":{\"query\":\"支付接口 测试场景\"},\"decision_summary\":\"检索 KB\",\"public_update\":\"检索中\",\"confidence\":0.7}",
+    "{\"action\":\"finish\",\"decision_summary\":\"检索到足够证据\",\"public_update\":\"进入下一步\",\"confidence\":0.85}"
+  ],
+  "kb_envelopes": [
+    {
+      "success": true,
+      "data": {
+        "chunks": [
+          {"text": "支付接口需覆盖正向、负向、幂等、并发四类场景。", "title": "支付测试指南.md", "source": "internal-wiki"},
+          {"text": "退款流程必须验证金额一致性、退款时效、异常处理。", "title": "退款流程.md", "source": "internal-wiki"}
+        ]
+      }
+    }
+  ],
+  "expected": {
+    "tool_calls_count": 1,
+    "final_action": "finish",
+    "information_sufficient": true,
+    "fallback_reason": null,
+    "knowledge_search_used": true
+  }
+}

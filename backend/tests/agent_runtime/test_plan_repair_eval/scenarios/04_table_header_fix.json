@@ -1,0 +1,38 @@
+{
+  "name": "table_header_fix",
+  "description": "table_header_whitelist kind issue,regen 通过",
+  "expected_outcome": {
+    "review_passed": true,
+    "fallback_reason": null
+  },
+  "repair_agent_enabled": true,
+  "setup": {
+    "task_id": "eval-r4",
+    "graph_run_id": "run-eval-r4",
+    "review_issues": {
+      "issue_ids": ["iss-1"],
+      "section_ids": ["sec-A"],
+      "level": "failed",
+      "kind": "table_header_whitelist",
+      "severity": "block"
+    },
+    "locked_section_ids": []
+  },
+  "scripted_llm_responses": [
+    "__USE_CALL_REGEN__|sec-A|iss-1|fix table header",
+    "__USE_CALL_REVIEW__|re-check",
+    "__FINISH__|iss-1"
+  ],
+  "envelope_map": {
+    "TestPlanRegenTool": [
+      {"__USE_OK__": ["sec-A"]}
+    ],
+    "ResultReviewTool": [
+      {"__USE_PASSED__": null}
+    ]
+  },
+  "assertions": {
+    "review_passed": true,
+    "fallback_reason": null
+  }
+}

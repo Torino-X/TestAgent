@@ -1,0 +1,105 @@
+# ===== Node / Frontend =====
+node_modules/
+dist/
+*.local
+*.log*
+
+# ===== Python / Backend =====
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.pytest-tmp-*/
+.tmp_pytest/
+.venv/
+.vnev/
+venv/
+env/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage/
+.vite/
+backend/_artifacts/
+backend/data/
+backend/logs/
+backend/output/
+backend/tmp/
+
+# ===== Environment — contains real credentials, NEVER commit =====
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+
+# ===== IDE / Editor =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# ===== Claude / Codex internal =====
+.claude/
+.codex/
+.planning/
+.zcode/
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+
+# ===== Runtime data =====
+data/uploads/
+data/artifacts/
+data/temp/
+data/logs/
+output/prompt_dumps/
+data/e2e_output/
+artifacts/
+/data/
+/logs/
+/output/
+/tmp/
+/test_doc/
+/stitch/
+/stitch-export/
+/backend/scripts/context_scenarios/fixtures/
+
+# ===== Local databases, certificates, and backups =====
+*.db
+*.sqlite
+*.sqlite3
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.bak
+/docker/certs/
+/token.txt
+/.codex_backups/
+
+# ===== Internal docs (NOT for handoff) =====
+# docs/ contains internal phase reports, root-cause audits, completion reports
+# accumulated during dev_2.0 / dev_3.0 development. New developers should
+# read docs_x/ instead, which holds curated onboarding materials.
+docs/
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+
+# Unused local design exports / scratch assets
+/frontend/src/temp/
+/frontend/src/assets/stitch/
+/frontend/src/assets/stitch_testagent_context_usage_footer_stitch_design/

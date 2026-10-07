@@ -1,0 +1,41 @@
+{
+  "name": "multi_section_blocks",
+  "description": "2 sections each with 1 block issue,fix succeeds after 1 round regen + 1 review",
+  "expected_outcome": {
+    "review_passed": true,
+    "fallback_reason": null,
+    "tool_calls_min": 3,
+    "rounds_min": 1
+  },
+  "repair_agent_enabled": true,
+  "setup": {
+    "task_id": "eval-r2",
+    "graph_run_id": "run-eval-r2",
+    "review_issues": {
+      "issue_ids": ["iss-1", "iss-2"],
+      "section_ids": ["sec-A", "sec-B"],
+      "level": "failed",
+      "kind": "forbidden_pattern",
+      "severity": "block"
+    },
+    "locked_section_ids": []
+  },
+  "scripted_llm_responses": [
+    "__USE_CALL_REGEN__|sec-A,sec-B|iss-1,iss-2|fix both",
+    "__USE_CALL_REVIEW__|re-check",
+    "__FINISH__|iss-1,iss-2"
+  ],
+  "envelope_map": {
+    "TestPlanRegenTool": [
+      {"__USE_OK__": ["sec-A", "sec-B"]}
+    ],
+    "ResultReviewTool": [
+      {"__USE_PASSED__": null}
+    ]
+  },
+  "assertions": {
+    "review_passed": true,
+    "fallback_reason": null,
+    "issues_resolved_min": 2
+  }
+}

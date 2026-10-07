@@ -1,0 +1,94 @@
+# docker-compose.dev.yml — 开发环境 ONLY PG + Redis
+#
+# 用途:你已经有云服务器 + 现有 MySQL(其他 docker / 或本机)
+#       现在再加 PG + Redis 两个容器(也是 docker),给本地开发连
+#
+# 区别于 docker-compose.prod.yml:
+#   - dev:只 PG + Redis;5432/6379 绑到 0.0.0.0(让本地连)
+#   - prod:5 服务 + 内网,PG/Redis 不暴露公网
+#
+# 启动:docker compose -f docker-compose.dev.yml up -d
+# 停机:docker compose -f docker-compose.dev.yml down
+
+version: "3.9"
+
+volumes:
+  pgdev:
+    driver: local
+  redisdev:
+    driver: local
+  redis_cache_dev:
+    driver: local
+
+services:
+  # ── Postgres(LangGraph Checkpointer)──
+  postgres:
+    image: postgres:16-alpine
+    container_name: testagent-pg-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: testagent
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in shell or .env}
+      POSTGRES_DB: langgraph
+    ports:
+      # 绑 0.0.0.0 让本地 backend 连进来(云安全组也开 5432 给本机 IP)
+      - "5432:5432"
+    volumes:
+      - pgdev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U testagent -d langgraph"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  # ── Runtime Redis(LiveEventBus + InFlight)──
+  # 策略 noeviction：协调面 Key（inflight / sequence）绝不能被业务缓存挤掉
+  # 端口 6379；与 Business Cache Redis (redis-cache:6380) 完全隔离实例
+  redis:
+    image: redis:7-alpine
+    container_name: testagent-redis-dev
+    restart: unless-stopped
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD:-}
+      --maxmemory 256mb
+      --maxmemory-policy noeviction
+      --appendonly yes
+    ports:
+      # 绑 0.0.0.0 让本地 backend 连(云安全组开 6379 给本机 IP)
+      - "6379:6379"
+    volumes:
+      - redisdev:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  # ── Business Cache Redis ──
+  # Phase 1 缓存系统专用；独立实例，端口 6380，策略 allkeys-lfu。
+  # 所有 Domain Cache（auth / config / conversation / task / library / context）
+  # 都连这个；CACHE_REDIS_URL=redis://:PASSWORD@HOST:6380/0
+  redis-cache:
+    image: redis:7-alpine
+    container_name: testagent-redis-cache-dev
+    restart: unless-stopped
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD:-}
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lfu
+      --appendonly no
+    ports:
+      # 绑 0.0.0.0 让本地 backend 连(云安全组开 6380 给本机 IP)
+      - "6380:6379"
+    volumes:
+      - redis_cache_dev:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-}", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 5s

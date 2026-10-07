@@ -1,0 +1,6 @@
+# CE-03 真实外部 E2E 依赖（Qdrant + Elasticsearch 客户端）。
+# 已纳入主 requirements.txt（Context Engine Internal RAG 完整功能需要），
+# 本文件保留为快速安装入口 / 版本约束单一来源。
+# 安装：pip install -r requirements.txt（或本文件）
+qdrant-client>=1.13.0,<2.0.0
+elasticsearch>=8.15.0,<9.0.0

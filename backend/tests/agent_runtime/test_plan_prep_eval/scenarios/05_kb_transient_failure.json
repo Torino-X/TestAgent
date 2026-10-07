@@ -1,0 +1,30 @@
+{
+  "name": "kb_transient_failure",
+  "description": "KB 返回 error.recoverable=true → PREPARATION_FALLBACK → 走 legacy fallback",
+  "input": {
+    "user_prompt": "测试数据导出",
+    "requirement_summary": "数据导出功能的边界场景",
+    "template_summary": "导出测试模板"
+  },
+  "scripted_llm_responses": [
+    "{\"action\":\"call_tool\",\"tool_name\":\"KnowledgeSearchTool\",\"tool_arguments\":{\"query\":\"数据导出\"},\"decision_summary\":\"尝试 KB\",\"public_update\":\"检索中\",\"confidence\":0.6}"
+  ],
+  "kb_envelopes": [
+    {
+      "success": false,
+      "data": null,
+      "error": {
+        "code": "kb_timeout",
+        "message": "Knowledge base client timed out after 5s",
+        "recoverable": true
+      }
+    }
+  ],
+  "expected": {
+    "tool_calls_count": 1,
+    "final_action": "fallback",
+    "information_sufficient": false,
+    "fallback_reason": "tool_recoverable_failure",
+    "knowledge_search_used": true
+  }
+}

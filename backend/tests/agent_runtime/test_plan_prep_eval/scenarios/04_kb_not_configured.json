@@ -1,0 +1,30 @@
+{
+  "name": "kb_not_configured",
+  "description": "KB 返回 disabled_by_config → KNOWLEDGE_SKIPPED → 优雅 finish",
+  "input": {
+    "user_prompt": "测试登录流程",
+    "requirement_summary": "未配置知识库的用户",
+    "template_summary": "标准模板"
+  },
+  "scripted_llm_responses": [
+    "{\"action\":\"call_tool\",\"tool_name\":\"KnowledgeSearchTool\",\"tool_arguments\":{\"query\":\"登录\"},\"decision_summary\":\"尝试 KB\",\"public_update\":\"检索中\",\"confidence\":0.5}",
+    "{\"action\":\"finish\",\"decision_summary\":\"KB 未配置,信息已足够\",\"public_update\":\"无需 KB\",\"confidence\":0.75}"
+  ],
+  "kb_envelopes": [
+    {
+      "success": true,
+      "data": {
+        "disabled_by_config": true,
+        "skip_reason": "user_has_no_kb_configured",
+        "chunks": []
+      }
+    }
+  ],
+  "expected": {
+    "tool_calls_count": 1,
+    "final_action": "finish",
+    "information_sufficient": true,
+    "fallback_reason": null,
+    "knowledge_search_used": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "version": "v1",
+  "seed": 42,
+  "domain": "rag",
+  "queries": [
+    {
+      "id": "rag_001",
+      "scope": "knowledge_user_global",
+      "query_text": "如何为测试方案生成设置需求文档解析？",
+      "expected_doc_ids": ["doc_001"],
+      "negative": false
+    },
+    {
+      "id": "rag_002",
+      "scope": "knowledge_workspace",
+      "query_text": "工作区内的模板解析规则是什么？",
+      "expected_doc_ids": ["doc_002"],
+      "negative": false
+    },
+    {
+      "id": "rag_003",
+      "scope": "negative",
+      "query_text": "一个完全不相关的外部主题查询",
+      "expected_doc_ids": [],
+      "negative": true
+    },
+    {
+      "id": "rag_004",
+      "scope": "memory_user",
+      "query_text": "用户偏好的输出格式是什么？",
+      "expected_doc_ids": ["mem_001"],
+      "negative": false
+    },
+    {
+      "id": "rag_005",
+      "scope": "cross_workspace",
+      "query_text": "跨工作区泄漏测试查询",
+      "expected_doc_ids": [],
+      "negative": true
+    }
+  ],
+  "hard_negatives": ["rag_003", "rag_005"]
+}

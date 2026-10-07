@@ -1,0 +1,311 @@
+{
+  "dataset_id": "ce03_eval_v1",
+  "version": "v1",
+  "docs": {
+    "doc_k01": {
+      "document_id": "doc_k01",
+      "chunk_id": "chunk_k01a",
+      "content": "测试计划的风险分析章节应识别项目风险、测试风险与发布风险，并给出缓解策略。",
+      "sha256": "3c2ed285e5fdbd29c526bf8388267d69a283324885656a19dd41dc8a0c3cf041"
+    },
+    "doc_k02": {
+      "document_id": "doc_k02",
+      "chunk_id": "chunk_k02a",
+      "content": "接口自动化测试的环境准备步骤包括配置依赖服务、准备测试数据与初始化凭据。",
+      "sha256": "fd63899dd31f59e3574441300c217f272c57d9c96481ed87aaf2fc4e9cef9c15"
+    },
+    "doc_k03": {
+      "document_id": "doc_k03",
+      "chunk_id": "chunk_k03a",
+      "content": "性能测试的并发模型选择取决于被测系统的线程模型、连接池与压测目标。",
+      "sha256": "345544b403f8b360286550733f3261a2df808b764fe4a06ba4b4ee974a3a746d"
+    },
+    "doc_k04": {
+      "document_id": "doc_k04",
+      "chunk_id": "chunk_k04a",
+      "content": "安全测试的威胁建模方法包括 STRIDE、攻击树与数据流图分析。",
+      "sha256": "0be67b8813886af4cc0081aee21d52d0f2f40203efd916442611dde2727bc8b6"
+    },
+    "doc_k05": {
+      "document_id": "doc_k05",
+      "chunk_id": "chunk_k05a",
+      "content": "兼容性测试矩阵应覆盖操作系统、浏览器、分辨率与网络环境的组合。",
+      "sha256": "16151e1ce4d2c412d5f23ea4c7541f8ad9c8b4dcb63c396f83bb331181d06118"
+    },
+    "doc_k06": {
+      "document_id": "doc_k06",
+      "chunk_id": "chunk_k06a",
+      "content": "测试数据准备的最佳实践包括数据脱敏、复用池与按用例维度隔离。",
+      "sha256": "d33d87197bc75e12f9a8ecf935cb368068fce2bb1a3fbe0aed903c428374bd7f"
+    },
+    "doc_k07": {
+      "document_id": "doc_k07",
+      "chunk_id": "chunk_k07a",
+      "content": "缺陷报告的复现步骤应描述前置条件、操作序列、预期结果与实际结果。",
+      "sha256": "24fc4192e778c0f74406833b8726daa45b1d771e7353338b971bf88d2ccc88e9"
+    },
+    "doc_k08": {
+      "document_id": "doc_k08",
+      "chunk_id": "chunk_k08a",
+      "content": "测试环境与生产环境的差异包括配置、数据规模与网络拓扑，需评估影响。",
+      "sha256": "944864e996745f24d8a9dddb0d6278f5e6250f9b230c4ef2fe9781987305adf8"
+    },
+    "doc_k09": {
+      "document_id": "doc_k09",
+      "chunk_id": "chunk_k09a",
+      "content": "自动化测试的稳定性策略包括重试机制、等待策略与幂等设计。",
+      "sha256": "f7c2f884aeed5abb612c27b7b8de7b96ad3ce99702ec8a9dcaa75653cfd62cd9"
+    },
+    "doc_k10": {
+      "document_id": "doc_k10",
+      "chunk_id": "chunk_k10a",
+      "content": "单元测试的覆盖率目标应根据代码复杂度设定，并关注分支与边界。",
+      "sha256": "f527e0de7c36e9236afa039032ceffe106ecede8685e47cf832464bb375911dd"
+    },
+    "doc_k11": {
+      "document_id": "doc_k11",
+      "chunk_id": "chunk_k11a",
+      "content": "集成测试的接口依赖桩处理应隔离外部系统并模拟边界响应。",
+      "sha256": "bda85622a10a437cc561ae859a2b59bfc73339d5e64d6aab4fe2aeb3127677a5"
+    },
+    "doc_k12": {
+      "document_id": "doc_k12",
+      "chunk_id": "chunk_k12a",
+      "content": "回归测试的选择策略应基于变更影响分析、风险等级与执行成本。",
+      "sha256": "8b668e876c36f5945ca5df9593626f63825acf3fd79968edf0e3d1703011f6d0"
+    },
+    "doc_k13": {
+      "document_id": "doc_k13",
+      "chunk_id": "chunk_k13a",
+      "content": "冒烟测试的范围应覆盖核心链路与关键入口，快速反馈构建健康度。",
+      "sha256": "2445be4bef39f276aee0062866ea78ebec195fa36abf55f29721a5a4777e50d6"
+    },
+    "doc_k14": {
+      "document_id": "doc_k14",
+      "chunk_id": "chunk_k14a",
+      "content": "测试用例评审的检查清单包括需求覆盖、前置条件、步骤可执行性与断言完整性。",
+      "sha256": "60b1ef1e4c42d228797c45df79aee161f36fff13c9871b57109cdd6815567127"
+    },
+    "doc_k15": {
+      "document_id": "doc_k15",
+      "chunk_id": "chunk_k15a",
+      "content": "测试进度跟踪的度量指标包括用例通过率、缺陷密度与阻塞项数量。",
+      "sha256": "1520734310a08583c6644090fdebe2bbfe9036d872120187a1b795e27ad3339e"
+    },
+    "doc_ws01": {
+      "document_id": "doc_ws01",
+      "chunk_id": "chunk_ws01a",
+      "content": "登录模块的测试要点包括正常登录、错误密码、锁定策略与验证码。",
+      "sha256": "8c500a732880a8532976992dfb51832712d341c231a6e6291fc5704981c73acc"
+    },
+    "doc_ws02": {
+      "document_id": "doc_ws02",
+      "chunk_id": "chunk_ws02a",
+      "content": "支付流程的异常场景测试包括余额不足、超时、重复提交与回调失败。",
+      "sha256": "5f39e3d43cfa2c004cd32276cd127df22299d43c1a4303e8335688a326ba3fc9"
+    },
+    "doc_ws03": {
+      "document_id": "doc_ws03",
+      "chunk_id": "chunk_ws03a",
+      "content": "导出功能的并发测试重点包括并发导出不冲突、文件完整性与大文件处理。",
+      "sha256": "463143a403e0c93bbfacdfd5ae0e91254b03c7c1734d60da5cf64ab4679f2434"
+    },
+    "doc_ws04": {
+      "document_id": "doc_ws04",
+      "chunk_id": "chunk_ws04a",
+      "content": "上传模块的边界测试包括空文件、超大文件、非法类型与并发上传。",
+      "sha256": "6392d78edcef6b12fe13e63a8b64c27562d868e75079e25a2a69b3946ecc1613"
+    },
+    "doc_ws05": {
+      "document_id": "doc_ws05",
+      "chunk_id": "chunk_ws05a",
+      "content": "权限控制的测试设计包括角色隔离、越权访问与最小权限验证。",
+      "sha256": "7e276b22fa9d3fc2cd36d2691b8fbf09f4792dd9e452667baf760c2a9e60ebdc"
+    },
+    "doc_ws06": {
+      "document_id": "doc_ws06",
+      "chunk_id": "chunk_ws06a",
+      "content": "消息推送的可靠性测试包括断网恢复、重复推送与送达确认。",
+      "sha256": "523f2b401eea71a4cf087ac834f014dcdef7a6f7c69d5adcab6538f4f7a23f49"
+    },
+    "doc_ws07": {
+      "document_id": "doc_ws07",
+      "chunk_id": "chunk_ws07a",
+      "content": "数据导入的校验规则测试包括必填、格式、长度与唯一性冲突。",
+      "sha256": "cebe4713218a91247aa7557a10b5bb4081bc7a0be96f95dfb5778036b759054a"
+    },
+    "doc_ws08": {
+      "document_id": "doc_ws08",
+      "chunk_id": "chunk_ws08a",
+      "content": "报表生成的性能测试包括大数据集渲染、缓存命中与并发导出。",
+      "sha256": "20b71a0db4def40454aa238a32e7d810f9a3da2ae9d00d9cd5d68114dd82ffdf"
+    },
+    "doc_ws09": {
+      "document_id": "doc_ws09",
+      "chunk_id": "chunk_ws09a",
+      "content": "搜索功能的排序验证包括相关性、时间与字段权重组合。",
+      "sha256": "164047854293d08b52c18b9b8a6ab8c0885041809ee4f995fb3bd6f890f0ef6c"
+    },
+    "doc_ws10": {
+      "document_id": "doc_ws10",
+      "chunk_id": "chunk_ws10a",
+      "content": "通知中心的幂等性测试包括重复触发不重复发送与状态幂等。",
+      "sha256": "7b76ee4dfc271a81511dc2ce8a66bf3c4be11c898e89e0b8a7da9b76210a2f58"
+    },
+    "doc_ws11": {
+      "document_id": "doc_ws11",
+      "chunk_id": "chunk_ws11a",
+      "content": "数据看板的刷新频率验证包括手动刷新、定时刷新与并发读取。",
+      "sha256": "2813121fab662dbb05f2cba5fc8f0712dbbb61c670cf006710625963ea00291b"
+    },
+    "doc_ws12": {
+      "document_id": "doc_ws12",
+      "chunk_id": "chunk_ws12a",
+      "content": "移动端适配的测试矩阵包括分辨率、字体缩放与横竖屏切换。",
+      "sha256": "b10dbf7cf06d36219c0c43ef66ac6c3c79dbae72a7154a336923f12d92f5c8ab"
+    },
+    "doc_ws13": {
+      "document_id": "doc_ws13",
+      "chunk_id": "chunk_ws13a",
+      "content": "日志系统的存储与清理测试包括日志轮转、容量上限与检索性能。",
+      "sha256": "32b0728c552a8879697664961fefcadc1c565225a1d5aeb3eb196bc48647db5c"
+    },
+    "doc_ws14": {
+      "document_id": "doc_ws14",
+      "chunk_id": "chunk_ws14a",
+      "content": "外部接口的容错测试包括超时、重试、降级与熔断。",
+      "sha256": "f6b4c484fa81dae598878844e3e750783b561e72cc96d3dcb64c7dd0d3d8f920"
+    },
+    "doc_ws15": {
+      "document_id": "doc_ws15",
+      "chunk_id": "chunk_ws15a",
+      "content": "配置中心的变更生效验证包括热更新、回滚与多环境隔离。",
+      "sha256": "1942a408e50643866824889c40201fd92df803ae55897d18f2c4c508a883cba7"
+    },
+    "mem_u01": {
+      "memory_id": "mem_u01",
+      "content": "用户偏好使用本地测试环境。",
+      "sha256": "5b32395b8fc3e068c6ff4b6a65f93e10c7a4e7eac742a152f31362ada9aa1eee"
+    },
+    "mem_u02": {
+      "memory_id": "mem_u02",
+      "content": "用户常用的测试工具是自研回归平台。",
+      "sha256": "c238f0e48f6b5dc9a4b06e44ce98dc557de6f0c440022d779f6db662d960f805"
+    },
+    "mem_u03": {
+      "memory_id": "mem_u03",
+      "content": "用户重点关注功能与性能测试。",
+      "sha256": "52b3a04525fc0767e6bd1a05375e84d56b2b148edc08b67922b8878ba90a40ff"
+    },
+    "mem_u04": {
+      "memory_id": "mem_u04",
+      "content": "用户质量目标是零线上缺陷。",
+      "sha256": "5f5c7a9aca8f599e5026c1ce40e9ccbfb2dcbc079dd1b76c33b8e8a602665020"
+    },
+    "mem_u05": {
+      "memory_id": "mem_u05",
+      "content": "用户常用技术栈为 Python 与 Vue。",
+      "sha256": "16fac0635ed7b455c93763be59e19f4c57e0462abf4b8a94f381c36547f560ea"
+    },
+    "mem_u06": {
+      "memory_id": "mem_u06",
+      "content": "用户偏好异步沟通方式。",
+      "sha256": "b3bd459b558069105374c2e2756a95b70bddae729662478488d2ea46d68e4b78"
+    },
+    "mem_u07": {
+      "memory_id": "mem_u07",
+      "content": "用户项目背景是大型企业应用。",
+      "sha256": "ed08a4055cbc63f920f1e47c7edc85afeac1685f462de3da0a091efc4ed1910b"
+    },
+    "mem_u08": {
+      "memory_id": "mem_u08",
+      "content": "用户偏好基于角色的权限认证。",
+      "sha256": "748743f77b42afcd787a14a18a1f4d5575df1689eb96fa83263fcde131905b69"
+    },
+    "mem_u09": {
+      "memory_id": "mem_u09",
+      "content": "用户部署环境为云上 Kubernetes。",
+      "sha256": "d9f485dce2ad45185fe59f23447e81a08ca6230ef052930d3410a1179d9669ae"
+    },
+    "mem_u10": {
+      "memory_id": "mem_u10",
+      "content": "用户权限需求是分级管理。",
+      "sha256": "1965f13e54a183b5cf90a2eca49b84dff41a3276e5c0001a38d16ae7d59787c2"
+    },
+    "mem_ws01": {
+      "memory_id": "mem_ws01",
+      "content": "本工作区常用 pytest 与 Playwright。",
+      "sha256": "389afcce2b9b0dc6528b3f329748a0328631a4e2a9d63dfab5d012718c0d5209"
+    },
+    "mem_ws02": {
+      "memory_id": "mem_ws02",
+      "content": "本工作区部署环境约定为双环境。",
+      "sha256": "a329619e9c5701e2404e377af43c79158a4591b56937d072daf27ce0fa76222d"
+    },
+    "mem_ws03": {
+      "memory_id": "mem_ws03",
+      "content": "本工作区安全规范要求机密分级。",
+      "sha256": "2bdc761293e83cfe5826591b43f90c309c7c0c7753c68779dcddfc0bacdaa1cd"
+    },
+    "mem_ws04": {
+      "memory_id": "mem_ws04",
+      "content": "本工作区质量标准为用例全通过。",
+      "sha256": "d4543474e66daaf62644255cdb6a16fde845a7470527481278c1b3ebdee33dcd"
+    },
+    "mem_ws05": {
+      "memory_id": "mem_ws05",
+      "content": "本工作区工具链为 GitLab 与 Jenkins。",
+      "sha256": "40485d767af6eb6e4a79669eedb9583ae0378feb7f10767e9b46f892848cad1d"
+    },
+    "mem_ws06": {
+      "memory_id": "mem_ws06",
+      "content": "本工作区测试数据规范为脱敏复用。",
+      "sha256": "35f31d160e4b7aacbf0d92b65420025cfa73b63446db4f2937aac4802bc8e71b"
+    },
+    "mem_ws07": {
+      "memory_id": "mem_ws07",
+      "content": "本工作区发布流程为灰度发布。",
+      "sha256": "14a2a1598193d6fa5da1d341b6242eaf80fd417ca0188a83c5b7c84d0ad20482"
+    },
+    "mem_ws08": {
+      "memory_id": "mem_ws08",
+      "content": "本工作区沟通渠道为飞书群。",
+      "sha256": "06ea7f7f2c187f2c71267cc17ce50be49deef525720ba4eef8567cacb66ea8f8"
+    },
+    "mem_ws09": {
+      "memory_id": "mem_ws09",
+      "content": "本工作区监控告警规范为阈值分级。",
+      "sha256": "866f9cb1ad550414f9892c84c34b5730e8a92c8cdd6d03f0afcdfe4d552683bb"
+    },
+    "mem_ws10": {
+      "memory_id": "mem_ws10",
+      "content": "本工作区数据备份策略为每日全量。",
+      "sha256": "67085165d6cbe023977ca7f65c0cbe5d208952e7b37865ae618b578248258b80"
+    },
+    "mem_pb01": {
+      "memory_id": "mem_pb01",
+      "content": "准备阶段应生成覆盖需求与边界的用例。",
+      "sha256": "82936bc37b529973455e9e4a3d6c72d4366511dd48d033b8ed140bf88b5f0ac7"
+    },
+    "mem_pb02": {
+      "memory_id": "mem_pb02",
+      "content": "评审阶段应核对需求追溯与断言完整。",
+      "sha256": "b77f00bdb7b431dd0032cc59264ff30aa2537f7c1dcd520f9230bf7c398c598f"
+    },
+    "mem_pb03": {
+      "memory_id": "mem_pb03",
+      "content": "修复阶段应回归受影响链路。",
+      "sha256": "b2e6cbee92114280d0aec36accb4cfacf11397ca0c577ab3081b9f0dd6e3969e"
+    },
+    "mem_pb04": {
+      "memory_id": "mem_pb04",
+      "content": "增量更新应评估变更影响范围。",
+      "sha256": "1e6833855b4d261d811ebb0c55c6ca4f60a49458b42bdffc5fa760ecafc2c4b7"
+    },
+    "mem_pb05": {
+      "memory_id": "mem_pb05",
+      "content": "生成阶段应输出结构化测试方案。",
+      "sha256": "ea01b948ab05565689a089dfc63a1eb4f010efd98bd3ac0afe639a745026abf1"
+    }
+  }
+}

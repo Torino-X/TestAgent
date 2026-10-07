@@ -1,0 +1,86 @@
+schema_version: 1
+site:
+  title: TestAgent 帮助中心
+  description: 从需求与模板准备，到测试方案生成、审查和交付的完整使用指南。
+
+sections:
+  - id: getting-started
+    title: 快速开始
+    order: 10
+    articles:
+      - { slug: quick-start, title: 5 分钟快速开始, description: 用一份需求和一个模板生成第一份测试方案。, file: articles/getting-started/quick-start.md, order: 10, keywords: [入门, 快速开始, 测试方案], featured: true, updated_at: '2026-09-17' }
+      - { slug: prepare-requirement, title: 准备需求文档, description: 了解什么样的需求材料更容易生成可靠结果。, file: articles/getting-started/prepare-requirement.md, order: 20, keywords: [需求文档, PRD, 输入], featured: true, updated_at: '2026-09-17' }
+      - { slug: prepare-template, title: 准备测试方案模板, description: 选择或上传用于约束输出结构的模板。, file: articles/getting-started/prepare-template.md, order: 30, keywords: [模板, Word, Excel], featured: true, updated_at: '2026-09-17' }
+      - { slug: first-test-plan, title: 生成第一份测试方案, description: 从新聊天开始，完成章节确认、生成和下载。, file: articles/getting-started/first-test-plan.md, order: 40, keywords: [生成, 章节确认, 下载], featured: true, updated_at: '2026-09-17' }
+
+  - id: concepts
+    title: 认识 TestAgent
+    order: 20
+    articles:
+      - { slug: what-is-testagent, title: TestAgent 是什么, description: 认识面向测试方案工作的智能协作助手。, file: articles/concepts/what-is-testagent.md, order: 10, keywords: [TestAgent, 产品介绍], featured: true, updated_at: '2026-09-17' }
+      - { slug: core-capabilities, title: 核心能力, description: 了解资料理解、模板驱动、生成与审查能力。, file: articles/concepts/core-capabilities.md, order: 20, keywords: [核心能力, 生成, 审查], updated_at: '2026-09-17' }
+      - { slug: testagent-vs-chat-ai, title: 与普通 AI 的区别, description: 理解结构化工作流和普通对话问答的差异。, file: articles/concepts/testagent-vs-chat-ai.md, order: 30, keywords: [AI, 对话, 工作流], updated_at: '2026-09-17' }
+      - { slug: template-driven-generation, title: 为什么采用模板驱动, description: 模板如何约束测试方案的结构与交付格式。, file: articles/concepts/template-driven-generation.md, order: 40, keywords: [模板驱动, 结构, 格式], updated_at: '2026-09-17' }
+      - { slug: capability-boundaries, title: 能力边界, description: 明确自动生成能做什么，以及哪些结论仍需人工确认。, file: articles/concepts/capability-boundaries.md, order: 50, keywords: [边界, 人工复核, 风险], updated_at: '2026-09-17' }
+
+  - id: test-plan
+    title: 测试方案
+    order: 30
+    articles:
+      - { slug: generate-test-plan, title: 如何生成测试方案, description: 完整掌握测试方案生成主流程。, file: articles/test-plan/generate-test-plan.md, order: 10, keywords: [测试方案, 生成流程], featured: true, updated_at: '2026-09-17' }
+      - { slug: ai-section-confirmation, title: 如何选择 AI 生成章节, description: 在生成前确认由 AI 编写与保留原样的章节。, file: articles/test-plan/ai-section-confirmation.md, order: 20, keywords: [章节, AI 生成, 确认], updated_at: '2026-09-17' }
+      - { slug: generation-progress, title: 如何查看生成过程, description: 读懂任务进度、章节状态和生成反馈。, file: articles/test-plan/generation-progress.md, order: 30, keywords: [进度, 状态, 任务], updated_at: '2026-09-17' }
+      - { slug: automatic-review-repair, title: 自动审查与自动修复, description: 了解生成后的质量检查与修复机制。, file: articles/test-plan/automatic-review-repair.md, order: 40, keywords: [审查, 修复, 质量], updated_at: '2026-09-17' }
+      - { slug: modify-generated-plan, title: 如何修改已生成测试方案, description: 通过对话提出范围明确的修改要求。, file: articles/test-plan/modify-generated-plan.md, order: 50, keywords: [修改, 迭代, 对话], updated_at: '2026-09-17' }
+      - { slug: download-word, title: 下载与查看 Word, description: 查看生成产物并下载用于评审的 Word 文件。, file: articles/test-plan/download-word.md, order: 60, keywords: [Word, 下载, 产物], updated_at: '2026-09-17' }
+
+  - id: templates
+    title: 模板
+    order: 40
+    articles:
+      - { slug: what-is-template, title: 什么是测试方案模板, description: 了解模板在生成过程中的作用。, file: articles/templates/what-is-template.md, order: 10, keywords: [模板, 测试方案], updated_at: '2026-09-17' }
+      - { slug: template-design, title: 如何设计适合 TestAgent 的模板, description: 设计层级清晰、可识别且便于填充的模板。, file: articles/templates/template-design.md, order: 20, keywords: [模板设计, 标题层级, 占位], featured: true, updated_at: '2026-09-17' }
+      - { slug: template-market, title: 模板市场, description: 搜索、预览并发现可复用的测试模板。, file: articles/templates/template-market.md, order: 30, keywords: [模板市场, 搜索, 预览], updated_at: '2026-09-17' }
+      - { slug: save-template, title: 保存模板, description: 将市场模板保存到“我的模板”。, file: articles/templates/save-template.md, order: 40, keywords: [保存模板, 我的模板], updated_at: '2026-09-17' }
+      - { slug: my-templates, title: 我的模板, description: 管理并使用自己保存或上传的模板。, file: articles/templates/my-templates.md, order: 50, keywords: [我的模板, 使用模板], updated_at: '2026-09-17' }
+      - { slug: upload-view-download-template, title: 上传、查看与下载模板, description: 完成模板上传、预览与下载操作。, file: articles/templates/upload-view-download-template.md, order: 60, keywords: [上传模板, 预览模板, 下载模板], updated_at: '2026-09-17' }
+
+  - id: projects
+    title: 项目
+    order: 50
+    articles:
+      - { slug: what-is-project, title: 什么是项目, description: 用项目组织对话、资料与测试产物。, file: articles/projects/what-is-project.md, order: 10, keywords: [项目, 对话, 资料], updated_at: '2026-09-17' }
+      - { slug: use-project, title: 使用项目开展测试工作, description: 在同一个项目上下文中持续推进测试工作。, file: articles/projects/use-project.md, order: 20, keywords: [项目, 新聊天, 上下文], updated_at: '2026-09-17' }
+      - { slug: project-sources, title: 项目资料, description: 上传或关联资料库文件作为项目资料。, file: articles/projects/project-sources.md, order: 30, keywords: [项目资料, 资料库, 文件], updated_at: '2026-09-17' }
+      - { slug: project-artifacts, title: 项目产物, description: 查看项目内生成的测试方案、测试用例和审查报告。, file: articles/projects/project-artifacts.md, order: 40, keywords: [项目产物, 测试方案, 测试用例], updated_at: '2026-09-17' }
+
+  - id: library
+    title: 资料库
+    order: 60
+    articles:
+      - { slug: upload-library-files, title: 上传资料库文件, description: 将需求与参考材料集中上传到资料库。, file: articles/library/upload-library-files.md, order: 10, keywords: [资料库, 上传文件], updated_at: '2026-09-17' }
+      - { slug: file-identification, title: 查看与识别文件, description: 搜索、筛选并预览资料库中的文件。, file: articles/library/file-identification.md, order: 20, keywords: [搜索, 筛选, 预览], updated_at: '2026-09-17' }
+      - { slug: manage-library-files, title: 管理资料库文件, description: 重命名、下载、删除与恢复资料文件。, file: articles/library/manage-library-files.md, order: 30, keywords: [重命名, 下载, 删除, 最近删除], updated_at: '2026-09-17' }
+
+  - id: knowledge
+    title: 知识库
+    order: 70
+    articles:
+      - { slug: what-is-knowledge, title: 什么是知识库, description: 了解企业知识检索在测试生成中的用途。, file: articles/knowledge/what-is-knowledge.md, order: 10, keywords: [知识库, 检索, 文档], updated_at: '2026-09-17' }
+      - { slug: use-knowledge, title: 使用与检查知识库, description: 创建知识库、导入文档并检查检索配置。, file: articles/knowledge/use-knowledge.md, order: 20, keywords: [创建知识库, 检索测试, 标签, 分片], updated_at: '2026-09-17' }
+
+  - id: best-practices
+    title: 最佳实践
+    order: 80
+    articles:
+      - { slug: improve-generation-quality, title: 如何提高测试方案生成质量, description: 从输入、模板和复核三个方面提升结果质量。, file: articles/best-practices/improve-generation-quality.md, order: 10, keywords: [质量, 输入, 复核], featured: true, updated_at: '2026-09-17' }
+      - { slug: recommended-template-structure, title: 推荐模板结构, description: 一套适合多数项目的测试方案目录结构。, file: articles/best-practices/recommended-template-structure.md, order: 20, keywords: [模板结构, 目录], updated_at: '2026-09-17' }
+      - { slug: recommended-requirement-structure, title: 推荐需求文档结构, description: 用明确范围、规则和验收标准减少歧义。, file: articles/best-practices/recommended-requirement-structure.md, order: 30, keywords: [需求结构, 验收标准], updated_at: '2026-09-17' }
+      - { slug: bad-template-examples, title: 常见错误模板, description: 识别会降低解析与生成质量的模板写法。, file: articles/best-practices/bad-template-examples.md, order: 40, keywords: [错误模板, 层级, 合并单元格], updated_at: '2026-09-17' }
+      - { slug: how-generation-works, title: TestAgent 如何生成测试方案, description: 从文档解析到审查修复的完整处理链路。, file: articles/best-practices/how-generation-works.md, order: 50, keywords: [生成原理, 流程, Mermaid], updated_at: '2026-09-17' }
+
+  - id: faq
+    title: 常见问题
+    order: 90
+    articles:
+      - { slug: faq, title: 常见问题, description: 汇总首发版本中最常见的使用疑问。, file: articles/faq/faq.md, order: 10, keywords: [FAQ, 常见问题, 排查], featured: true, updated_at: '2026-09-17' }

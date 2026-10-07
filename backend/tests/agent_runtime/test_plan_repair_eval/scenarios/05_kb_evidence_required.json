@@ -1,0 +1,44 @@
+{
+  "name": "kb_evidence_required",
+  "description": "Repair Agent 调 KnowledgeSearchTool 1 次,evidence 合并入 repair_result.knowledge_evidence",
+  "expected_outcome": {
+    "review_passed": true,
+    "fallback_reason": null,
+    "evidence_count_min": 1
+  },
+  "repair_agent_enabled": true,
+  "setup": {
+    "task_id": "eval-r5",
+    "graph_run_id": "run-eval-r5",
+    "review_issues": {
+      "issue_ids": ["iss-1"],
+      "section_ids": ["sec-A"],
+      "level": "failed",
+      "kind": "forbidden_pattern",
+      "severity": "block"
+    },
+    "locked_section_ids": []
+  },
+  "scripted_llm_responses": [
+    "__USE_CALL_KB__|test plan rewrite best practice|kb lookup",
+    "__USE_CALL_REGEN__|sec-A|iss-1|apply best practice",
+    "__USE_CALL_REVIEW__|re-check",
+    "__FINISH__|iss-1"
+  ],
+  "envelope_map": {
+    "KnowledgeSearchTool": [
+      {"__USE_KB_OK__": [{"text": "Rewrite using P1 pattern", "title": "doc1", "relevance": 0.9}]}
+    ],
+    "TestPlanRegenTool": [
+      {"__USE_OK__": ["sec-A"]}
+    ],
+    "ResultReviewTool": [
+      {"__USE_PASSED__": null}
+    ]
+  },
+  "assertions": {
+    "review_passed": true,
+    "fallback_reason": null,
+    "evidence_count_min": 1
+  }
+}

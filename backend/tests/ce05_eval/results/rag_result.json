@@ -1,0 +1,7 @@
+{
+  "status": "PENDING_REAL_EXEC",
+  "reason": "真实连接可用，评估在 CI/人工授权下执行",
+  "dataset_version": "v1",
+  "queries": 5,
+  "results": []
+}

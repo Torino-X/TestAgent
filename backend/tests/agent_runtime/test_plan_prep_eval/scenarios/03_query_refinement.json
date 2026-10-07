@@ -1,0 +1,32 @@
+{
+  "name": "query_refinement",
+  "description": "第 1 次 KB 返回 0 条 → 第 2 次换 query → 拿到证据",
+  "input": {
+    "user_prompt": "测试订单状态机",
+    "requirement_summary": "订单从待支付 → 已支付 → 已发货 → 已完成的状态流转",
+    "template_summary": "订单系统测试模板"
+  },
+  "scripted_llm_responses": [
+    "{\"action\":\"call_tool\",\"tool_name\":\"KnowledgeSearchTool\",\"tool_arguments\":{\"query\":\"订单状态\"},\"decision_summary\":\"第一次检索\",\"public_update\":\"检索中\",\"confidence\":0.6}",
+    "{\"action\":\"call_tool\",\"tool_name\":\"KnowledgeSearchTool\",\"tool_arguments\":{\"query\":\"状态机 流转 测试\"},\"decision_summary\":\"第二次检索换 query\",\"public_update\":\"换关键词\",\"confidence\":0.6}",
+    "{\"action\":\"finish\",\"decision_summary\":\"信息已足够\",\"public_update\":\"进入下一步\",\"confidence\":0.85}"
+  ],
+  "kb_envelopes": [
+    {"success": true, "data": {"chunks": []}},
+    {
+      "success": true,
+      "data": {
+        "chunks": [
+          {"text": "状态机需覆盖合法转移、非法转移、并发转移。", "title": "状态机测试.md", "source": "kb"}
+        ]
+      }
+    }
+  ],
+  "expected": {
+    "tool_calls_count": 2,
+    "final_action": "finish",
+    "information_sufficient": true,
+    "fallback_reason": null,
+    "knowledge_search_used": true
+  }
+}

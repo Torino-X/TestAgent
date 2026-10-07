@@ -1,0 +1,19 @@
+{
+  "uid": "testagent-observability-v2",
+  "title": "TestAgent 可观测性 V2",
+  "timezone": "utc",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {"type": "row", "title": "Backend Overview", "id": 1},
+    {"type": "logs", "title": "HTTP 4xx/5xx、慢请求与错误指纹", "id": 2, "datasource": {"type": "loki", "uid": "TestAgent Loki"}, "targets": [{"expr": "{service=\"testagent-backend\"} | json | level=~\"ERROR|CRITICAL\""}]},
+    {"type": "row", "title": "Agent Runtime", "id": 3},
+    {"type": "logs", "title": "任务、Worker、Graph 失败", "id": 4, "datasource": {"type": "loki", "uid": "TestAgent Loki"}, "targets": [{"expr": "{service=\"testagent-backend\"} | json | event=~\"agent\\..*\\.(failed|completed)\""}]},
+    {"type": "row", "title": "Context Engine", "id": 5},
+    {"type": "logs", "title": "Compose 与 Retrieval 诊断", "id": 6, "datasource": {"type": "loki", "uid": "TestAgent Loki"}, "targets": [{"expr": "{service=\"testagent-backend\"} | json | event=~\"context\\..*\""}]},
+    {"type": "row", "title": "LLM 与依赖", "id": 7},
+    {"type": "logs", "title": "LLM timeout、失败与依赖不可用", "id": 8, "datasource": {"type": "loki", "uid": "TestAgent Loki"}, "targets": [{"expr": "{service=\"testagent-backend\"} | json | event=~\"llm\\..*|dependency\\..*\""}]},
+    {"type": "row", "title": "Trace", "id": 9},
+    {"type": "traces", "title": "Tempo Trace 查询", "id": 10, "datasource": {"type": "tempo", "uid": "tempo"}, "targets": []}
+  ]
+}

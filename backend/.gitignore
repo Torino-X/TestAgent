@@ -1,0 +1,35 @@
+# Byte-compiled
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment — contains real credentials, NEVER commit
+.env
+
+# Data directories (runtime)
+data/uploads/
+data/artifacts/
+data/temp/
+data/logs/
+
+# Dev prompt dumps (CONTEXT_PROMPT_DUMP_ENABLED=1)
+tmp/prompt_dumps/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Distribution
+dist/
+*.egg-info/

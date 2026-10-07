@@ -1,0 +1,96 @@
+/* Shared dropdown surface. Menus are teleported to body, so these rules must be global. */
+.n-dropdown-menu {
+  padding: 7px !important;
+  background: #ffffff !important;
+  border: 1px solid #dededb !important;
+  border-radius: 15px !important;
+  box-shadow: 0 16px 38px rgba(23, 23, 23, 0.13), 0 2px 8px rgba(23, 23, 23, 0.06) !important;
+}
+
+.n-dropdown-menu .n-dropdown-option {
+  margin: 1px 0;
+  border-radius: 8px;
+}
+
+.n-dropdown-menu .n-dropdown-option-body {
+  min-height: 34px;
+  padding: 7px 10px !important;
+  border-radius: 8px;
+}
+
+.n-dropdown-menu .n-dropdown-option-body::before {
+  border-radius: 8px !important;
+}
+
+.n-dropdown-menu .n-dropdown-option-body:not(.n-dropdown-option-body--disabled):hover::before {
+  background: #f6f6f4 !important;
+}
+
+.n-dropdown-menu .n-dropdown-divider {
+  margin: 6px 4px !important;
+  background: #ececea !important;
+}
+
+.app-select-menu .n-dropdown-option-body__label {
+  width: 100%;
+}
+
+.app-select-menu .n-dropdown-option-body.app-select-menu__option--selected::before,
+.app-select-menu__option--selected .n-dropdown-option-body::before {
+  background: transparent !important;
+}
+
+.app-select-menu .n-dropdown-option-body.app-select-menu__option--selected:hover::before,
+.app-select-menu__option--selected .n-dropdown-option-body:hover::before {
+  background: #f6f6f4 !important;
+}
+
+.app-select-option {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-select-option__copy {
+  display: grid;
+  min-width: max-content;
+  gap: 2px;
+}
+
+.app-select-option__label {
+  overflow: visible;
+  color: #202020;
+  font-size: 14px;
+  font-weight: 450;
+  line-height: 20px;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.app-select-option__description {
+  color: #777777;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  white-space: normal;
+}
+
+.app-select-option__check,
+.app-select-option__check-space {
+  flex: 0 0 17px;
+  width: 17px;
+  color: #171717;
+}
+
+.app-select-menu .n-dropdown-option-body.app-select-menu__option--described,
+.app-select-menu__option--described .n-dropdown-option-body {
+  min-height: 48px;
+}
+
+.n-dropdown-menu .n-dropdown-option-body:focus-visible {
+  outline: 2px solid rgba(23, 23, 23, 0.48);
+  outline-offset: -2px;
+}

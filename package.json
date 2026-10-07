@@ -1,0 +1,17 @@
+{
+  "name": "testagent",
+  "version": "1.0.0",
+  "description": "> **AI 测试工程师工作台** — 上传 PRD/需求文档和 Word 测试方案模板，自动解析、生成、审查、修复、导出测试方案。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "@types/node": "^26.6.3"
+  }
+}

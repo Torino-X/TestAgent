@@ -1,0 +1,39 @@
+{
+  "name": "budget_exhausted",
+  "description": "LLM 永不 finish,8 步后 BudgetExceeded,review_passed=False + REPAIR_BUDGET_EXHAUSTED",
+  "expected_outcome": {
+    "review_passed": false,
+    "fallback_reason_contains": "budget",
+    "steps_min": 7,
+    "tool_calls_max": 6
+  },
+  "repair_agent_enabled": true,
+  "setup": {
+    "task_id": "eval-r6",
+    "graph_run_id": "run-eval-r6",
+    "review_issues": {
+      "issue_ids": ["iss-1", "iss-2"],
+      "section_ids": ["sec-A", "sec-B"],
+      "level": "failed",
+      "kind": "forbidden_pattern",
+      "severity": "block"
+    },
+    "locked_section_ids": []
+  },
+  "scripted_llm_responses": [
+    "__USE_CALL_REGEN__|sec-A|iss-1|step __ITER__",
+    "__USE_CALL_REGEN__|sec-B|iss-2|step __ITER__"
+  ],
+  "envelope_map": {
+    "TestPlanRegenTool": [
+      {"__USE_OK__": ["sec-A"]},
+      {"__USE_OK__": ["sec-B"]}
+    ]
+  },
+  "loop_count": 12,
+  "assertions": {
+    "review_passed": false,
+    "fallback_reason_contains": "budget",
+    "steps_min": 7
+  }
+}

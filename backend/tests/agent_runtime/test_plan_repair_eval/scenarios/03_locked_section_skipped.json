@@ -1,0 +1,40 @@
+{
+  "name": "locked_section_skipped",
+  "description": "锁定 sec-L;review_issues 只列 iss-LL (在 sec-L),issue_parser 应过滤掉,Repair 不动 sec-L",
+  "expected_outcome": {
+    "review_passed": true,
+    "fallback_reason": null,
+    "modified_sections_must_not_contain": ["sec-L"]
+  },
+  "repair_agent_enabled": true,
+  "setup": {
+    "task_id": "eval-r3",
+    "graph_run_id": "run-eval-r3",
+    "review_issues": {
+      "issue_ids": ["iss-1", "iss-LL"],
+      "section_ids": ["sec-A", "sec-L"],
+      "level": "failed",
+      "kind": "forbidden_pattern",
+      "severity": "block"
+    },
+    "locked_section_ids": ["sec-L"]
+  },
+  "scripted_llm_responses": [
+    "__USE_CALL_REGEN__|sec-A|iss-1|fix only sec-A (sec-L locked)",
+    "__USE_CALL_REVIEW__|re-check",
+    "__FINISH__|iss-1"
+  ],
+  "envelope_map": {
+    "TestPlanRegenTool": [
+      {"__USE_OK__": ["sec-A"]}
+    ],
+    "ResultReviewTool": [
+      {"__USE_PASSED__": null}
+    ]
+  },
+  "assertions": {
+    "review_passed": true,
+    "fallback_reason": null,
+    "modified_sections_must_not_contain": ["sec-L"]
+  }
+}

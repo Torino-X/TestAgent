@@ -1,0 +1,1 @@
+"""Phase 2.1 — Legacy ↔ LangGraph 等价测试入口。"""

@@ -1,0 +1,184 @@
+# docker-compose.prod.yml — TestAgent 云服务器生产部署
+#
+# 架构原则:
+#   * MySQL    — 用云上已有实例(连 DATABASE_URL 即可)
+#   * Postgres — 本 compose 内,**port 不映射到主机**(internal-only)
+#   * Redis    — 本 compose 内,**port 不映射到主机**(internal-only)
+#   * Backend  — port 8000 映射到主机 127.0.0.1(loopback only)
+#                 实际暴露由 nginx / ALB 在前面代理
+#   * Frontend — port 3000 同上(loopback only)
+#
+# 守 #18:可以ary_percent=0 / default_engine=legacy 必须显式写在
+#         .env.prod(本文件不包含任何 secret)
+#
+# 运行前请设置 .env.prod(或者在云上用 secrets manager):
+#   DATABASE_URL=mysql+pymysql://...
+#   MYSQL_ROOT_PASSWORD=...
+#   POSTGRES_PASSWORD=...
+#   AGENT_RUNTIME_LLM_API_KEY=... # 你的实际 LLM key(走 SettingsService 配)
+#
+# 启动:bash scripts/prod_start.sh
+# 停机:bash scripts/prod_stop.sh
+# 日志:bash scripts/prod_logs.sh [service-name]
+
+version: "3.9"
+
+# 自定义网络:Postgres / Redis / Backend / Frontend 互通
+networks:
+  app-net:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
+  redisdata:
+    driver: local
+
+services:
+  # ── 1. Postgres(LangGraph Checkpointer + 跨进程恢复)──
+  #      **不映射 port** 到主机,只在 app-net 内可达
+  postgres:
+    image: postgres:16-alpine
+    container_name: testagent-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: langgraph
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD required in .env.prod}
+      POSTGRES_DB: langgraph
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # 持久化的 init SQL(如自定义表空间/extension)
+      # - ./docker/postgres-init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - app-net
+    # 故意**不写** ports:句柄 → 不暴露
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U langgraph -d langgraph"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── 2. Redis(LiveEventBus + InFlight Registry)──
+  redis:
+    image: redis:7-alpine
+    container_name: testagent-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD:-}
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --appendonly yes
+    volumes:
+      - redisdata:/data
+    networks:
+      - app-net
+    # 故意**不写** ports:句柄 → 不暴露
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── 3. Backend(FastAPI)──
+  #      暴露 127.0.0.1:8000(loopback),由 nginx / ALB 反代
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: testagent-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - .env.prod
+    environment:
+      # 容器内的环境名(如果 dockerfile 有用)
+      APP_ENV: production
+      # 用服务名访问 DB / Cache(不走 localhost)
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL required in .env.prod}
+      AGENT_RUNTIME_POSTGRES_URL: postgresql+psycopg://langgraph:${POSTGRES_PASSWORD}@postgres:5432/langgraph
+      AGENT_RUNTIME_REDIS_URL: redis://:@${REDIS_PASSWORD:-}@redis:6379/0?password=${REDIS_PASSWORD:-}
+      # 守 #18:这两个**必须显式写**为 legacy / 0
+      AGENT_RUNTIME_CANARY_PERCENT: "0"
+      AGENT_RUNTIME_DEFAULT_ENGINE: legacy
+    networks:
+      - app-net
+    ports:
+      # 只绑 127.0.0.1;nginx / ALB 在 localhost:8000 上 proxy_pass
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── 4. Frontend(Vite/Quasar)──
+  #      暴露 127.0.0.1:3000(nginx / ALB 在前面)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    container_name: testagent-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    env_file:
+      - .env.prod
+    networks:
+      - app-net
+    ports:
+      - "127.0.0.1:3000:3000"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── 5. Nginx(optional:对外 HTTPS 入口)──
+  #      如果你有外部 ALB,可以不启动这个 service,由 ALB 直接打到
+  #      127.0.0.1:8000 / 3000。
+  #      如果没有 ALB,启动这个 nginx + 申请 Let's Encrypt cert
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: testagent-nginx
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./docker/certs:/etc/nginx/certs:ro
+    networks:
+      - app-net
+    ports:
+      # 80 / 443 对外(by 安全组 / firewall 限制)
+      - "80:80"
+      - "443:443"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
