@@ -4,7 +4,7 @@
 > 让需求文档、Word 模板、项目资料与组织规则进入同一条可审阅的工作流，协助测试工程师生成、确认、审查并交付测试方案。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212501_655_2.png" alt="TestAgent 已完成的测试方案任务概览与交付结果" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_01.png" alt="TestAgent 已完成的测试方案任务概览与交付结果" width="100%" />
 </p>
 
 <p align="center">
@@ -60,7 +60,7 @@ TestAgent 的设计重点因此不是追求一次性生成更多文字，而是�
 模板市场支持浏览、搜索和筛选测试模板，保存常用模板，维护“我的模板”，并上传或下载个人模板。选定模板后可直接带入新的会话使用，让团队将稳定的文档结构沉淀为可复用资产。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212736_663_2.png" alt="TestAgent 模板市场：浏览、保存和复用测试模板" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_09.png" alt="TestAgent 模板市场：浏览、保存和复用测试模板" width="100%" />
 </p>
 
 ### 资料库：统一管理文档与生成资产
@@ -70,7 +70,7 @@ TestAgent 的设计重点因此不是追求一次性生成更多文字，而是�
 这使输入材料与生成结果不再散落在不同会话和本地目录中：需求文档可作为后续任务的资料来源，生成的方案也可被统一查看和归档。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212837_666_2.png" alt="TestAgent 资料库：管理需求文档、模板与生成资产" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_12.png" alt="TestAgent 资料库：管理需求文档、模板与生成资产" width="100%" />
 </p>
 
 ### 项目：为项目资料和测试资产建立边界
@@ -78,13 +78,13 @@ TestAgent 的设计重点因此不是追求一次性生成更多文字，而是�
 一次测试任务并不总是一个从零开始的项目。测试工程师经常需要参考已有的发布手册、设计说明、验收计划、风险台账或上一轮测试产物。TestAgent 的项目功能提供了项目边界：项目内可以管理对话、项目资料和测试资产，使同一个项目中的任务可以拥有持续而独立的背景信息。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212750_664_2.png" alt="TestAgent 项目列表：管理多个项目空间" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_10.png" alt="TestAgent 项目列表：管理多个项目空间" width="100%" />
 </p>
 
 在项目详情中，用户既可以上传新的项目资料，也可以关联资料库中的已有文件；项目对话共享这些资料与项目设置。完成的测试方案等资产也会归入项目，便于在后续任务中继续查阅和利用。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212820_665_2.png" alt="TestAgent 项目资料工作区：为项目对话添加持续背景信息" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_11.png" alt="TestAgent 项目资料工作区：为项目对话添加持续背景信息" width="100%" />
 </p>
 
 > 当前版本尚未开放项目协作分享。README 仅描述已经实现的个人项目空间、项目资料与测试资产管理能力。
@@ -108,7 +108,7 @@ TestAgent 区分项目级资料与组织级知识，避免把两者混为一谈�
 例如，一个预约签到系统的需求可以描述“预约、签到、候补转正和报表导出”；而模板可能要求保留组织既定的测试环境、缺陷管理和准入准出章节。单纯让模型“按模板写方案”并不能可靠区分哪些内容可以生成、哪些必须保留。TestAgent 会先让这些输入进入可见的准备步骤，再由用户确认生成范围，避免把所有内容都交给模型自由改写。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212535_657_2.png" alt="TestAgent 的八步测试方案生成计划与执行过程" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_03.png" alt="TestAgent 的八步测试方案生成计划与执行过程" width="100%" />
 </p>
 
 ### 一条可观察、可干预的生成工作流
@@ -139,13 +139,13 @@ flowchart LR
 当信息不足以形成可靠结论时，系统会把问题清晰地呈现给用户。用户可以在补充卡片中选择已有选项或输入说明；这些补充随后会进入当前任务的后续判断，而不是由模型静默假设。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007213105_670_2.png" alt="TestAgent 的需求缺口补充卡片：用户选择或输入关键规则" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_16.png" alt="TestAgent 的需求缺口补充卡片：用户选择或输入关键规则" width="100%" />
 </p>
 
 用户确认后，准备阶段会记录已补充的依据并重新评估任务。例如，用户确认某项售后时效口径、状态流转规则或非功能验证范围后，后续测试方案可以以这些明确内容为基础继续生成。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212605_659_2.png" alt="TestAgent 接收用户补充后重新评估测试方案生成依据" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_05.png" alt="TestAgent 接收用户补充后重新评估测试方案生成依据" width="100%" />
 </p>
 
 ### 章节级处理：明确 AI 可以写什么
@@ -155,7 +155,7 @@ flowchart LR
 这一步将“不要改动固定内容”从一句容易被忽略的提示语，转化为明确的处理范围。它尤其适合包含固定测试设备、实验环境、流程规则或审批信息的企业模板。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007213302_674_2.png" alt="TestAgent 的章节处理策略确认：选择 AI 生成或保留模板内容" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_20.png" alt="TestAgent 的章节处理策略确认：选择 AI 生成或保留模板内容" width="100%" />
 </p>
 
 ### 结构化生成、审查与 Word 交付
@@ -163,7 +163,7 @@ flowchart LR
 确认章节范围后，系统生成用于回填的结构化内容，再进行结果审查并导出为 Word 文档。生成过程和结果摘要可在会话中查看；交付物保留在资料库和关联项目中，供下载、预览与后续使用。
 
 <p align="center">
-  <img src="docs_x/frontend-image/微信图片_20261007212623_660_2.png" alt="TestAgent 的测试方案审查结果、生成摘要与 Word 下载入口" width="100%" />
+  <img src="docs_x/frontend-image/TestAgent_UI_06.png" alt="TestAgent 的测试方案审查结果、生成摘要与 Word 下载入口" width="100%" />
 </p>
 
 ## 能力总览
