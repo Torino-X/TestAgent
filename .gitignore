@@ -92,6 +92,9 @@ artifacts/
 # read docs_x/ instead, which holds curated onboarding materials.
 docs/
 
+# ===== Local private documents (never commit) =====
+/doc/
+
 # Playwright
 test-results/
 playwright-report/
